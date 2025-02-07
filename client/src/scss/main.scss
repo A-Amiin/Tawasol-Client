@@ -1,0 +1,11 @@
+@use './components/header-sec/navbar.scss';
+
+@use './components/hero-sec/hero.scss';
+
+@use './components/Footer/Footer.scss';
+
+@use "./components/Login/Login.scss";
+
+* {
+    font-family: "Montserrat", serif;
+}

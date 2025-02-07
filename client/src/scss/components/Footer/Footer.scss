@@ -1,0 +1,31 @@
+.footer {
+    background-color: #011023;
+    color: #7c9dc6;
+
+    ul {
+        li {
+            a {
+                color: #7c9dc6;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            &:hover {
+                a {
+                    color: #ccd6e3;
+                }
+            }
+        }
+    }
+
+    p {
+        a {
+            color: #7c9dc6;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: #ccd6e3;
+        }
+    }
+}

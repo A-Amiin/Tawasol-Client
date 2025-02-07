@@ -1,0 +1,112 @@
+.background-page {
+    height: 100vh;
+    background: linear-gradient(135deg, #011023, #042558, #507CA9);
+
+    .content {
+        height: 50vh;
+        width: 65%;
+        background-color: white;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        .d-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #042558;
+            text-align: center;
+        }
+
+        .form {
+            .form-group {
+                .label {
+                    color: #011023;
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                input {
+                    border: 1px solid #507CA9;
+                    border-radius: 15px;
+                    background-color: #c2e8ff;
+
+                    &::placeholder {
+                        font-size: 0.8rem;
+                        color: #7c9fc6;
+                        font-style: italic;
+                    }
+                }
+            }
+
+            .forgot-password {
+                a {
+                    color: #042558;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: small;
+                }
+
+                a:hover {
+                    color: #6e93aa;
+                }
+            }
+        }
+
+        .register-link {
+            font-size: small;
+
+            a {
+                color: #042558;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            a:hover {
+                color: #6e93aa;
+            }
+        }
+
+        .pic {
+            background-color: #507CA9;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 12px 12px 0;
+
+            img {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            h3 {
+                color: white;
+                text-align: center;
+                margin-top: 20px;
+                font-weight: 700;
+                font-size: 2rem;
+            }
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 55%;
+        }
+    }
+}
+
+@media (min-width:350px) and (max-width: 1024px) {
+
+    .background-page .content {
+        width: 100%;
+    }
+}
