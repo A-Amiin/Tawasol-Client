@@ -18,7 +18,7 @@ const LogInComponent = () => {
         }
         dispatch(loginUser(credentials)).then((result) => {
             if (result.meta.requestStatus === "fulfilled") {
-                navigate('/');
+                navigate('/home');
             }
         });
     };
