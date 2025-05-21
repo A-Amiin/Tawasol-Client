@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import loginUser from '../../redux/slices/authSlice';
+import loginUser from '../../redux/thunks/loginUser';
 import { Link, useNavigate } from 'react-router-dom';
 
 const LogInComponent = () => {
@@ -10,14 +10,24 @@ const LogInComponent = () => {
     const { loading, error, user } = useSelector((state) => state.auth);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/home');
+        }
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!credentials.email || !credentials.password) {
             alert("Please fill in all fields.");
             return;
         }
+
         dispatch(loginUser(credentials)).then((result) => {
+            console.log(result);
             if (result.meta.requestStatus === "fulfilled") {
+                localStorage.setItem("token", result.payload.accessToken);
                 navigate('/home');
             }
         });
