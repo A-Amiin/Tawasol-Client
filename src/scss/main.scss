@@ -1,12 +1,12 @@
 @use './components/header-sec/navbar.scss';
-
 @use './components/hero-sec/hero.scss';
-
 @use './components/Footer/Footer.scss';
-
 @use "./components/Login/Login.scss";
+@use './components/HomePage/HomePage.scss';
+@use './components/HomePage/HomeNav/HomeNav.scss';
+@use './components/HomePage/HomeMain/HomeMain.scss';
+@use './components/HomePage/HomeAside/HomeAside.scss';
 
-@use './components/HomeNav/HomeNav.scss';
 
 * {
     font-family: "Montserrat", serif;
