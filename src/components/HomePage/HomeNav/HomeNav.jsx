@@ -1,4 +1,5 @@
 import { Bell } from "lucide-react";
+import { Link } from "react-router-dom";
 const HomeNav = () => {
     return (
         <div className="logo-container">
@@ -7,21 +8,33 @@ const HomeNav = () => {
             </div>
             <nav className="links">
                 {[
-                    ['Home', '/dashboard'],
+                    ['Home', '/home'],
                     ['Messages', '/Messages'],
                     ['Notifications', '/Notifications'],
-                ].map(([title, url]) => (
-                    <a href={url} className="nav-item">{title}</a>
+                ].map(([title, url], idx) => (
+                    <Link to={url} className="nav-item" key={url}>
+                        {title}
+                    </Link>
                 ))}
             </nav>
             <div className="notification-user">
-                <div className="notification">
-                    <Bell className="bell" />
-                    <span className="notification-count">3</span>
-                </div>
-                <div className="user">
-                    <img src="../public/Images/user.jpg" alt="User" className="user-image" />
-                </div>
+                <Link to="/Notifications" className="notification">
+                    <div className="notification">
+                        <button
+                            className="notification-btn"
+                            aria-label="View notifications"
+                            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                        >
+                            <Bell className="bell" />
+                            <span className="notification-count">3</span>
+                        </button>
+                    </div>
+                </Link>
+                <Link to="/Profile" className="user-profile">
+                    <div className="user">
+                        <img src="../public/Images/user.jpg" alt="User" className="user-image" />
+                    </div>
+                </Link>
             </div>
         </div>
     )

@@ -16,6 +16,9 @@ const AppRouter = () => {
                 <Route path="/JoinUs" element={<JoinUs />} />
                 <Route element={<ProtectedRoute />}>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/Messages" element={<Home />} />
+                    <Route path="/Notifications" element={<Home />} />
+                    <Route path="/Profile" element={<Home />} />
                 </Route>
             </Routes>
         </BrowserRouter>
