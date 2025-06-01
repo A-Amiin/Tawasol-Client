@@ -1,14 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import loginUser from '../../redux/thunks/loginUser';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+});
 
 const LogInComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { loading, error } = useSelector((state) => state.auth);
 
-    const { loading, error, user } = useSelector((state) => state.auth);
-    const [credentials, setCredentials] = useState({ email: '', password: '' });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -17,18 +33,14 @@ const LogInComponent = () => {
         }
     }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!credentials.email || !credentials.password) {
-            alert("Please fill in all fields.");
-            return;
-        }
-
-        dispatch(loginUser(credentials)).then((result) => {
-            console.log(result);
-            if (result.meta.requestStatus === "fulfilled") {
-                localStorage.setItem("token", result.payload.accessToken);
+    const onSubmit = (data) => {
+        dispatch(loginUser(data)).then((result) => {
+            if (result.meta.requestStatus === 'fulfilled') {
+                localStorage.setItem('token', result.payload.accessToken);
+                toast.success('Login successful! 🎉');
                 navigate('/home');
+            } else {
+                toast.error('Login failed. Please check your credentials. ❌');
             }
         });
     };
@@ -38,43 +50,49 @@ const LogInComponent = () => {
             <div className="content d-flex justify-content-center justify-content-lg-between">
                 <div className="d-flex flex-column align-items-center justify-content-evenly">
                     <h1 className="fw-bold">Welcome Back💕</h1>
-                    {error && <p className="text-danger">{error}</p>}
-                    <form className="form" onSubmit={handleSubmit}>
+                    <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group my-3">
-                            <label className="label" htmlFor="email">Email</label>
+                            <label htmlFor="email">Email</label>
                             <input
-                                type="email"
-                                className="form-control"
                                 id="email"
-                                placeholder="Enter email"
-                                value={credentials.email}
-                                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-                                disabled={loading}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label className="label" htmlFor="password">Password</label>
-                            <input
-                                type="password"
                                 className="form-control"
-                                id="password"
-                                placeholder="Enter password"
-                                value={credentials.password}
-                                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                                type="email"
+                                placeholder="Enter email"
+                                {...register('email')}
                                 disabled={loading}
                             />
+                            {errors.email && <p style={{ fontSize: '12px' }} className="text-danger">{errors.email.message}</p>}
                         </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                id="password"
+                                className="form-control"
+                                type="password"
+                                placeholder="Enter password"
+                                {...register('password')}
+                                disabled={loading}
+                            />
+                            {errors.password && <p style={{ fontSize: '12px' }} className="text-danger">{errors.password.message}</p>}
+                        </div>
+
                         <p className="forgot-password"><a href="#">Forgot Password?</a></p>
+
                         <div className="button d-flex justify-content-center">
-                            <button type="submit" className="btn btn-primary align-self-center px-4 fw-bold" disabled={loading}>
-                                <span>{loading ? "Logging in..." : "Login"}</span>
+                            <button type="submit" className="btn btn-primary px-4 fw-bold" disabled={loading}>
+                                {loading ? 'Logging in...' : 'Login'}
                             </button>
                         </div>
                     </form>
-                    <p className="register-link">Don't have an account? <Link to="/Register">Register</Link></p>
+
+                    <p className="register-link">
+                        Don't have an account? <Link to="/Register">Register</Link>
+                    </p>
                 </div>
+
                 <div className="pic d-none d-lg-flex justify-content-center flex-column align-items-center">
-                    <img src="../../public/images/login-img-card.png" alt="Background" />
+                    <img src="public/images/login-img-card.png" alt="Background" />
                     <h3>Login To Join Our Community</h3>
                 </div>
             </div>
