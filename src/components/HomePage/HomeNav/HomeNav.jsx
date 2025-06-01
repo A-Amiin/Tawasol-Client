@@ -26,7 +26,7 @@ const HomeNav = () => {
                             style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
                         >
                             <Bell className="bell" />
-                            <span className="notification-count">3</span>
+                            <span style={{ fontSize: '12px' }} className="notification-count text-white fw-bold">3</span>
                         </button>
                     </div>
                 </Link>

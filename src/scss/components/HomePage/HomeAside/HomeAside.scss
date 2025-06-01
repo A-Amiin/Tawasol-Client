@@ -1,5 +1,14 @@
 .HomeAside-wraperr {
     width: 27%;
+    padding: 1rem 0;
 
-    background-color: aquamarine;
+    .MyCard {
+        padding: .5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 }
