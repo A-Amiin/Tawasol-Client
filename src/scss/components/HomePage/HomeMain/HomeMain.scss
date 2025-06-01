@@ -39,13 +39,14 @@
                 .whats-in-your-mind-textarea {
                     width: 95%;
                     height: 2.5rem;
-                    background-color: #fff;
+                    background-color: #F9FAFB;
                     border-radius: 0.5rem;
                     padding: 0.5rem;
                     font-size: 1rem;
                     resize: none;
                     overflow: hidden;
                     margin: 1rem 1rem 1rem 0;
+                    border: 1px solid #DFE7EF;
 
                     &::placeholder {
                         color: #888;

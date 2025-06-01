@@ -11,4 +11,106 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         background-color: #fff;
     }
+
+    .HomeAside-Trending-Title,
+    .HomeAside-Contactions-Title,
+    .HomeAside-Recent-Activity-Title {
+        color: #042558;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .HomeAside-Trending-List {
+        padding: 0 0.5rem;
+
+        .HomeAside-Trending-Item-Title {
+            color: #507CA9;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .HomeAside-Trending-Item-Count {
+            color: #4B5563;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+    }
+
+    .HomeAside-Contactions {
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 0.5rem;
+
+            .user-image {
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+            }
+
+            .user-data {
+                .username {
+                    font-weight: 600;
+                    color: #042558;
+                    font-size: 1rem;
+                }
+
+                .post-time {
+                    font-size: 0.8rem;
+                    color: #547EB0;
+                }
+            }
+
+            .btnn {
+                background-color: #547EB0;
+                border: none;
+                color: #fff;
+                padding: 0.25rem 1rem;
+                border-radius: 0.3rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background-color: #3b5f8a;
+                }
+            }
+        }
+    }
+
+    .HomeAside-Recent-Activity {
+        .HomeAside-Recent-Activity-List {
+            .icon-wrapper {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #EDF1F6;
+
+                .action-icon {
+                    fill: #507CA9;
+                    stroke: none;
+                }
+            }
+
+            .Activity-info {
+                .activity-text {
+                    color: #1F2937;
+                    font-weight: 500;
+                    font-size: 0.9rem;
+
+                    .name {
+                        color: #042558;
+                        font-weight: 600;
+                    }
+                }
+
+                .activity-time {
+                    color: #6B7280;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
 }
